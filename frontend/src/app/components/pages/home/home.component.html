@@ -1,3 +1,9 @@
+<app-search-bar></app-search-bar>
+<app-tags></app-tags>
+<app-not-found
+  [Visible]="!foods || !foods.length"
+  resetLinkText="Reset Search"
+></app-not-found>
 <ul>
   <li *ngFor="let food of foods">
     <a routerLink="/food/{{ food.id }}">
@@ -13,17 +19,17 @@
         <div class="product-item-footer">
           <div class="origins">
             <span *ngFor="let origin of food.origins">
-            {{origin}}
+              {{ origin }}
             </span>
           </div>
           <div class="cook-time">
             <span>🕒</span>
-            {{food.cookTime}}
+            {{ food.cookTime }}
           </div>
         </div>
         <div class="price">
           <span>
-            {{food.price | currency:'INR'}}
+            {{ food.price | currency : "INR" }}
           </span>
         </div>
       </div>
