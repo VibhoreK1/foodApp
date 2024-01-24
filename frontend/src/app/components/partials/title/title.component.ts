@@ -19,7 +19,7 @@ export class TitleComponent implements OnInit{
   @Input()
   fontSize? = '1.7rem'
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+   
   }
 
 }
