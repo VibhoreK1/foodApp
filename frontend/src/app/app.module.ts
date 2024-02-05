@@ -1,6 +1,6 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,6 +22,10 @@ import { InputValidationComponent } from './components/partials/input-validation
 import { TextInputComponent } from './components/partials/text-input/text-input.component';
 import { DefaultButtonComponent } from './components/partials/default-button/default-button.component';
 import { RegisterPageComponent } from './components/pages/register-page/register-page.component';
+import { LoadingComponent } from './components/partials/loading/loading.component';
+import { loadingInterceptor } from './shared/interceptors/loading.interceptor';
+import { CheckoutPageComponent } from './components/pages/checkout-page/checkout-page.component';
+import { OrderItemListComponent } from './components/partials/order-items-list/order-items-list.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +44,9 @@ import { RegisterPageComponent } from './components/pages/register-page/register
     TextInputComponent,
     DefaultButtonComponent,
     RegisterPageComponent,
+    LoadingComponent,
+    CheckoutPageComponent,
+    OrderItemListComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [
@@ -56,7 +63,9 @@ import { RegisterPageComponent } from './components/pages/register-page/register
     }),
     BrowserAnimationsModule,
   ],
-  providers: [],
+  providers: [
+    {provide:HTTP_INTERCEPTORS, useClass:loadingInterceptor, multi:true}
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
